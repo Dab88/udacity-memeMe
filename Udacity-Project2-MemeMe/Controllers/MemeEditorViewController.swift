@@ -122,7 +122,7 @@ class MemeEditorViewController: UIViewController {
     
     
     @IBAction func cancelMeme(sender: AnyObject) {
-        
+        originalState()
     }
     
     
@@ -200,7 +200,13 @@ class MemeEditorViewController: UIViewController {
         
     }
     
+    func originalState(){
     
+        self.originalImage.image = UIImage()
+        self.topMessageTxtField.text = "TOP"
+        self.bottomMessageTxtField.text = "BOTTOM"
+        
+    }
     
     /*
     // MARK: - Navigation
