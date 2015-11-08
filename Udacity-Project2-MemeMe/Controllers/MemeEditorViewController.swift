@@ -76,7 +76,7 @@ class MemeEditorViewController: UIViewController {
     
     
     
-    
+
     func setTextFieldAttributes(){
         
         let memeTextAttributes = [
@@ -106,6 +106,7 @@ class MemeEditorViewController: UIViewController {
         
         let pickerController = UIImagePickerController()
         
+        pickerController.delegate = self
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
     /*
@@ -119,3 +120,60 @@ class MemeEditorViewController: UIViewController {
     */
 
 }
+
+
+
+
+
+extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        
+    }
+    
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage{
+            
+            memeImage.contentMode = .ScaleAspectFit
+            
+            memeImage.image = self.imageWithSize(chosenImage, size: CGSize(width: 120, height: 120))
+            
+            dismissViewControllerAnimated(true, completion: nil)
+            
+        }else if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            
+            memeImage.contentMode = .ScaleAspectFit
+            
+            memeImage.image = self.imageWithSize(chosenImage, size: CGSize(width: 120, height: 120))
+            dismissViewControllerAnimated(true, completion: nil)
+            
+        }
+        
+    }
+    
+    func imageWithSize(image: UIImage,size: CGSize)->UIImage{
+        if UIScreen.mainScreen().respondsToSelector("scale"){
+            UIGraphicsBeginImageContextWithOptions(size,false,UIScreen.mainScreen().scale);
+        }
+        else{
+            UIGraphicsBeginImageContext(size);
+        }
+        
+        image.drawInRect(CGRectMake(0, 0, size.width, size.height));
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return newImage;
+    }
+    
+}
+

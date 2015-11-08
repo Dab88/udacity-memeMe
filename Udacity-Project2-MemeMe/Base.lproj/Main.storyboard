@@ -32,7 +32,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <animations/>
                                 <items>
-                                    <barButtonItem title="Pick" id="7u3-7f-Ofj"/>
+                                    <barButtonItem title="Pick" id="7u3-7f-Ofj">
+                                        <connections>
+                                            <action selector="pickAnImage:" destination="E23-hu-4I7" id="NVj-6M-pi7"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="WVO-9w-GKB">
