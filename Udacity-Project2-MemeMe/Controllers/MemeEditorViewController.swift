@@ -9,33 +9,48 @@
 import UIKit
 
 /**
-Meme Editor View
-
-The Meme Editor View consists of an image view overlaid by two text fields, one near the top and one near the bottom of the image. This view has a bottom toolbar with two buttons: one for the camera and one for the photo album. The top navigation bar has a share button on the left displaying Apple’s stock share icon and a “Cancel” button on the right.
-*/
+ Meme Editor View
+ 
+ The Meme Editor View consists of an image view overlaid by two text fields, one near the top and one near the bottom of the image. This view has a bottom toolbar with two buttons: one for the camera and one for the photo album. The top navigation bar has a share button on the left displaying Apple’s stock share icon and a “Cancel” button on the right.
+ */
 
 
 class MemeEditorViewController: UIViewController {
-
+    
     @IBOutlet weak var topMessageTxtField: UITextField!
     @IBOutlet weak var bottomMessageTxtField: UITextField!
     @IBOutlet weak var memeImage: UIImageView!
+    @IBOutlet weak var cameraBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
-        self.navigationController?.navigationBarHidden = false
+        
         setTextFieldAttributes()
-        subscribeToKeyboardNotifications()
         
         //Add gesture from hide keyboard when the user touch the screen
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "hideKeyboard"))
         
+        //Enable the cameraBtn only if camera is available
+        cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        subscribeToKeyboardNotifications()
+        
+        //Enable the cameraBtn only if camera is available
+        cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        
+    }
+    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        
         unsubscribeFromKeyboardNotifications()
     }
     
@@ -49,38 +64,35 @@ class MemeEditorViewController: UIViewController {
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
- 
+    
     func keyboardWillHide(notification: NSNotification){
         self.view.frame.origin.y += getKeyboardHeight(notification)
     }
     
-    
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
-    
+        
         let userInfo = notification.userInfo
-       
+        
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-    
+        
         return keyboardSize.CGRectValue().height
         
     }
     
     func subscribeToKeyboardNotifications(){
-    
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     
     func unsubscribeFromKeyboardNotifications(){
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-
+    
     func setTextFieldAttributes(){
         
         let memeTextAttributes = [
@@ -102,29 +114,42 @@ class MemeEditorViewController: UIViewController {
     func save() {
         //Create the meme
         //let meme = Meme( text: textField.text!, image:
-            //memeImage.image, memedImage: memedImage)
+        //memeImage.image, memedImage: memedImage)
     }
-
     
+    
+    
+    // MARK: - IBActions
     @IBAction func pickAnImage(sender: AnyObject) {
         
         let pickerController = UIImagePickerController()
-        
         pickerController.delegate = self
+        pickerController.sourceType = .PhotoLibrary
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
     
     
+    
+    @IBAction func takePhotoFromCamera(sender: AnyObject) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+        pickerController.sourceType = .Camera
+        pickerController.modalPresentationStyle = .FullScreen
+        pickerController.cameraCaptureMode = .Photo
+        presentViewController(pickerController, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 
 
@@ -132,7 +157,7 @@ class MemeEditorViewController: UIViewController {
 
 
 extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-
+    
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -175,5 +200,18 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
         return newImage;
     }
     
+}
+
+extension MemeEditorViewController: UITextFieldDelegate{
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
 }
 

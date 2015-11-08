@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tub-Fq-4xd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -27,6 +28,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="E23-hu-4I7" id="JYv-Th-Hxy"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="WVO-9w-GKB">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -34,6 +38,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="E23-hu-4I7" id="dOE-7N-XZP"/>
+                                </connections>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWX-ou-eFu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -43,11 +50,15 @@
                                     <barButtonItem width="124" style="plain" systemItem="fixedSpace" id="bSl-hQ-v1I"/>
                                     <barButtonItem systemItem="camera" id="7u3-7f-Ofj">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="E23-hu-4I7" id="NVj-6M-pi7"/>
+                                            <action selector="takePhotoFromCamera:" destination="E23-hu-4I7" id="lSX-TT-1cT"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="73" style="plain" systemItem="fixedSpace" id="ooI-l6-NWp"/>
-                                    <barButtonItem title="Album" id="jji-VG-nWa"/>
+                                    <barButtonItem title="Album" id="jji-VG-nWa">
+                                        <connections>
+                                            <action selector="pickAnImage:" destination="E23-hu-4I7" id="Lgd-AY-NUj"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -88,13 +99,8 @@
                                 <exclude reference="GWX-ou-eFu"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="39U-RE-cVS"/>
-                                <exclude reference="81H-Rf-uJ4"/>
-                                <exclude reference="efY-zg-cMX"/>
-                                <exclude reference="qqx-uz-5Bk"/>
-                                <exclude reference="umV-tf-prs"/>
-                                <exclude reference="wmp-bP-h0e"/>
-                                <exclude reference="zl9-3R-cjE"/>
+                                <exclude reference="BxS-pm-Un9"/>
+                                <exclude reference="qBa-Ly-9b7"/>
                                 <exclude reference="0AN-dX-mYi"/>
                                 <exclude reference="IRZ-2S-iKL"/>
                                 <exclude reference="rxQ-F8-1nB"/>
@@ -107,8 +113,13 @@
                                 <exclude reference="5uZ-TQ-TUi"/>
                                 <exclude reference="9DQ-BL-mAQ"/>
                                 <exclude reference="aZu-bY-VXC"/>
-                                <exclude reference="BxS-pm-Un9"/>
-                                <exclude reference="qBa-Ly-9b7"/>
+                                <exclude reference="39U-RE-cVS"/>
+                                <exclude reference="81H-Rf-uJ4"/>
+                                <exclude reference="efY-zg-cMX"/>
+                                <exclude reference="qqx-uz-5Bk"/>
+                                <exclude reference="umV-tf-prs"/>
+                                <exclude reference="wmp-bP-h0e"/>
+                                <exclude reference="zl9-3R-cjE"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -119,13 +130,8 @@
                                 <include reference="GWX-ou-eFu"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="39U-RE-cVS"/>
-                                <include reference="81H-Rf-uJ4"/>
-                                <exclude reference="efY-zg-cMX"/>
-                                <include reference="qqx-uz-5Bk"/>
-                                <include reference="umV-tf-prs"/>
-                                <include reference="wmp-bP-h0e"/>
-                                <exclude reference="zl9-3R-cjE"/>
+                                <include reference="BxS-pm-Un9"/>
+                                <include reference="qBa-Ly-9b7"/>
                                 <include reference="0AN-dX-mYi"/>
                                 <include reference="IRZ-2S-iKL"/>
                                 <include reference="rxQ-F8-1nB"/>
@@ -138,8 +144,13 @@
                                 <include reference="5uZ-TQ-TUi"/>
                                 <include reference="9DQ-BL-mAQ"/>
                                 <include reference="aZu-bY-VXC"/>
-                                <include reference="BxS-pm-Un9"/>
-                                <include reference="qBa-Ly-9b7"/>
+                                <include reference="39U-RE-cVS"/>
+                                <include reference="81H-Rf-uJ4"/>
+                                <exclude reference="efY-zg-cMX"/>
+                                <include reference="qqx-uz-5Bk"/>
+                                <include reference="umV-tf-prs"/>
+                                <include reference="wmp-bP-h0e"/>
+                                <exclude reference="zl9-3R-cjE"/>
                             </mask>
                         </variation>
                     </view>
@@ -151,6 +162,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="bottomMessageTxtField" destination="WVO-9w-GKB" id="g6r-nu-fjZ"/>
+                        <outlet property="cameraBtn" destination="7u3-7f-Ofj" id="Db6-27-FWH"/>
                         <outlet property="memeImage" destination="xLV-Pm-hNs" id="e54-33-9fp"/>
                         <outlet property="topMessageTxtField" destination="BIU-jE-tzV" id="SlP-Kc-MZz"/>
                     </connections>

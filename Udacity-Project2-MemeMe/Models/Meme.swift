@@ -26,6 +26,7 @@ class Meme : NSObject{
     
     func generateMemedImage() -> UIImage{
         
+       // self.navigationController?.navigationBarHidden = false
         
         // TODO: Hide toolbar and navbar
         
