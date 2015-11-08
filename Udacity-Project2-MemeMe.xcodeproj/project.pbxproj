@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931E9EF01BD4085E00693355 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931E9EEF1BD4085E00693355 /* TextFieldDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		931E9EF31BD41B3700693355 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931E9EF21BD41B3700693355 /* Meme.swift */; settings = {ASSET_TAGS = (); }; };
 		93305B251BC04594008B0DE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93305B241BC04594008B0DE6 /* AppDelegate.swift */; };
-		93305B271BC04594008B0DE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93305B261BC04594008B0DE6 /* ViewController.swift */; };
 		93305B2A1BC04594008B0DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93305B281BC04594008B0DE6 /* Main.storyboard */; };
 		93305B2C1BC04594008B0DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93305B2B1BC04594008B0DE6 /* Assets.xcassets */; };
 		93305B2F1BC04594008B0DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93305B2D1BC04594008B0DE6 /* LaunchScreen.storyboard */; };
 		93305B3A1BC04594008B0DE6 /* Udacity_Project2_MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93305B391BC04594008B0DE6 /* Udacity_Project2_MemeMeTests.swift */; };
 		93305B451BC04594008B0DE6 /* Udacity_Project2_MemeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93305B441BC04594008B0DE6 /* Udacity_Project2_MemeMeUITests.swift */; };
+		93305B551BC0461F008B0DE6 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93305B541BC0461F008B0DE6 /* MemeEditorViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		93305B591BC04687008B0DE6 /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93305B581BC04687008B0DE6 /* MemeDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		93305B5B1BC0479A008B0DE6 /* SentMemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93305B5A1BC0479A008B0DE6 /* SentMemesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		931E9EEF1BD4085E00693355 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldDelegate.swift; path = "Support /TextFieldDelegate.swift"; sourceTree = "<group>"; };
+		931E9EF21BD41B3700693355 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Meme.swift; path = Models/Meme.swift; sourceTree = "<group>"; };
 		93305B211BC04594008B0DE6 /* Udacity-Project2-MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Udacity-Project2-MemeMe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93305B241BC04594008B0DE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		93305B261BC04594008B0DE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		93305B291BC04594008B0DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93305B2B1BC04594008B0DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93305B2E1BC04594008B0DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +52,9 @@
 		93305B401BC04594008B0DE6 /* Udacity-Project2-MemeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Udacity-Project2-MemeMeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93305B441BC04594008B0DE6 /* Udacity_Project2_MemeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Udacity_Project2_MemeMeUITests.swift; sourceTree = "<group>"; };
 		93305B461BC04594008B0DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93305B541BC0461F008B0DE6 /* MemeEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemeEditorViewController.swift; path = Controllers/MemeEditorViewController.swift; sourceTree = "<group>"; };
+		93305B581BC04687008B0DE6 /* MemeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemeDetailViewController.swift; path = Controllers/MemeDetailViewController.swift; sourceTree = "<group>"; };
+		93305B5A1BC0479A008B0DE6 /* SentMemesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SentMemesViewController.swift; path = Controllers/SentMemesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		931E9EF11BD41B2100693355 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				931E9EF21BD41B3700693355 /* Meme.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		93305B181BC04594008B0DE6 = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +114,10 @@
 			isa = PBXGroup;
 			children = (
 				93305B241BC04594008B0DE6 /* AppDelegate.swift */,
-				93305B261BC04594008B0DE6 /* ViewController.swift */,
-				93305B281BC04594008B0DE6 /* Main.storyboard */,
-				93305B2B1BC04594008B0DE6 /* Assets.xcassets */,
-				93305B2D1BC04594008B0DE6 /* LaunchScreen.storyboard */,
+				931E9EEF1BD4085E00693355 /* TextFieldDelegate.swift */,
+				931E9EF11BD41B2100693355 /* Models */,
+				93305B521BC045A2008B0DE6 /* Controllers */,
+				93305B531BC045AB008B0DE6 /* UI */,
 				93305B301BC04594008B0DE6 /* Info.plist */,
 			);
 			path = "Udacity-Project2-MemeMe";
@@ -123,6 +139,26 @@
 				93305B461BC04594008B0DE6 /* Info.plist */,
 			);
 			path = "Udacity-Project2-MemeMeUITests";
+			sourceTree = "<group>";
+		};
+		93305B521BC045A2008B0DE6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				93305B5A1BC0479A008B0DE6 /* SentMemesViewController.swift */,
+				93305B541BC0461F008B0DE6 /* MemeEditorViewController.swift */,
+				93305B581BC04687008B0DE6 /* MemeDetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		93305B531BC045AB008B0DE6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				93305B281BC04594008B0DE6 /* Main.storyboard */,
+				93305B2B1BC04594008B0DE6 /* Assets.xcassets */,
+				93305B2D1BC04594008B0DE6 /* LaunchScreen.storyboard */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +291,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93305B271BC04594008B0DE6 /* ViewController.swift in Sources */,
+				93305B5B1BC0479A008B0DE6 /* SentMemesViewController.swift in Sources */,
 				93305B251BC04594008B0DE6 /* AppDelegate.swift in Sources */,
+				93305B551BC0461F008B0DE6 /* MemeEditorViewController.swift in Sources */,
+				931E9EF31BD41B3700693355 /* Meme.swift in Sources */,
+				931E9EF01BD4085E00693355 /* TextFieldDelegate.swift in Sources */,
+				93305B591BC04687008B0DE6 /* MemeDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +521,7 @@
 				93305B4B1BC04594008B0DE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		93305B4C1BC04594008B0DE6 /* Build configuration list for PBXNativeTarget "Udacity-Project2-MemeMeTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +530,7 @@
 				93305B4E1BC04594008B0DE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		93305B4F1BC04594008B0DE6 /* Build configuration list for PBXNativeTarget "Udacity-Project2-MemeMeUITests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +539,7 @@
 				93305B511BC04594008B0DE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
