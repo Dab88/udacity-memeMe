@@ -47,23 +47,23 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.086260028183460236" green="0.08628285676240921" blue="0.086258567869663239" alpha="0.580078125" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <barButtonItem width="124" style="plain" systemItem="fixedSpace" id="bSl-hQ-v1I"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bLb-aj-cgY"/>
                                     <barButtonItem systemItem="camera" id="7u3-7f-Ofj">
                                         <connections>
                                             <action selector="takePhotoFromCamera:" destination="E23-hu-4I7" id="lSX-TT-1cT"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="73" style="plain" systemItem="fixedSpace" id="ooI-l6-NWp"/>
-                                    <barButtonItem title="Album" id="jji-VG-nWa">
+                                    <barButtonItem title="Album" width="98" id="jji-VG-nWa">
                                         <connections>
                                             <action selector="pickAnImage:" destination="E23-hu-4I7" id="Lgd-AY-NUj"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="1Fz-wb-geC"/>
                                 </items>
                             </toolbar>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.086260028183460236" green="0.08628285676240921" blue="0.086258567869663239" alpha="0.580078125" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BIU-jE-tzV" secondAttribute="trailing" constant="20" id="0AN-dX-mYi"/>
                             <constraint firstItem="xLV-Pm-hNs" firstAttribute="width" secondItem="jAe-s8-eD9" secondAttribute="width" id="39U-RE-cVS"/>
@@ -155,15 +155,24 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="smC-8k-K98">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="Xzr-CG-jBz"/>
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Is1-V6-5HH"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="Xzr-CG-jBz">
+                            <connections>
+                                <action selector="shareMeme:" destination="E23-hu-4I7" id="HA1-3v-xLC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Is1-V6-5HH">
+                            <connections>
+                                <action selector="cancelMeme:" destination="E23-hu-4I7" id="0jM-ty-FhC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="bottomMessageTxtField" destination="WVO-9w-GKB" id="g6r-nu-fjZ"/>
                         <outlet property="cameraBtn" destination="7u3-7f-Ofj" id="Db6-27-FWH"/>
-                        <outlet property="memeImage" destination="xLV-Pm-hNs" id="e54-33-9fp"/>
+                        <outlet property="originalImage" destination="xLV-Pm-hNs" id="Sup-ur-ydg"/>
+                        <outlet property="toolbar" destination="GWX-ou-eFu" id="wAD-Ch-wfd"/>
                         <outlet property="topMessageTxtField" destination="BIU-jE-tzV" id="SlP-Kc-MZz"/>
                     </connections>
                 </viewController>

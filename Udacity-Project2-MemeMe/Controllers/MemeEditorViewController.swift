@@ -14,13 +14,16 @@ import UIKit
  The Meme Editor View consists of an image view overlaid by two text fields, one near the top and one near the bottom of the image. This view has a bottom toolbar with two buttons: one for the camera and one for the photo album. The top navigation bar has a share button on the left displaying Apple’s stock share icon and a “Cancel” button on the right.
  */
 
-
 class MemeEditorViewController: UIViewController {
     
+    //MARK: UI
     @IBOutlet weak var topMessageTxtField: UITextField!
     @IBOutlet weak var bottomMessageTxtField: UITextField!
-    @IBOutlet weak var memeImage: UIImageView!
+    @IBOutlet weak var originalImage: UIImageView!
     @IBOutlet weak var cameraBtn: UIBarButtonItem!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    var currentTextField: UITextField!
     
     override func viewDidLoad() {
         
@@ -50,7 +53,6 @@ class MemeEditorViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         unsubscribeFromKeyboardNotifications()
     }
     
@@ -61,12 +63,17 @@ class MemeEditorViewController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification){
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if( currentTextField == bottomMessageTxtField){
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            
+        }
     }
     
     
     func keyboardWillHide(notification: NSNotification){
-        self.view.frame.origin.y += getKeyboardHeight(notification)
+        if( currentTextField == bottomMessageTxtField){
+            self.view.frame.origin.y += getKeyboardHeight(notification)
+        }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
@@ -93,41 +100,13 @@ class MemeEditorViewController: UIViewController {
     }
     
     
-    func setTextFieldAttributes(){
-        
-        let memeTextAttributes = [
-            NSStrokeColorAttributeName : UIColor.blackColor(),
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName : -3.0 //For fill the text.
-        ]
-        
-        
-        topMessageTxtField.defaultTextAttributes = memeTextAttributes
-        bottomMessageTxtField.defaultTextAttributes = memeTextAttributes
-        
-        topMessageTxtField.textAlignment = NSTextAlignment.Center
-        bottomMessageTxtField.textAlignment = NSTextAlignment.Center
-        
-    }
-    
-    func save() {
-        //Create the meme
-        //let meme = Meme( text: textField.text!, image:
-        //memeImage.image, memedImage: memedImage)
-    }
-    
-    
-    
     // MARK: - IBActions
     @IBAction func pickAnImage(sender: AnyObject) {
-        
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = .PhotoLibrary
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
-    
     
     
     @IBAction func takePhotoFromCamera(sender: AnyObject) {
@@ -139,6 +118,89 @@ class MemeEditorViewController: UIViewController {
         pickerController.cameraCaptureMode = .Photo
         presentViewController(pickerController, animated: true, completion: nil)
     }
+    
+    
+    
+    @IBAction func cancelMeme(sender: AnyObject) {
+        
+    }
+    
+    
+    @IBAction func shareMeme(sender: AnyObject) {
+        save()
+    }
+    
+    
+    //MARK: - Other
+    
+    /**
+    * Set textfield attributes
+    */
+    func setTextFieldAttributes(){
+        
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSStrokeWidthAttributeName : -3.0 //For fill the text.
+        ]
+        
+        topMessageTxtField.defaultTextAttributes = memeTextAttributes
+        bottomMessageTxtField.defaultTextAttributes = memeTextAttributes
+        
+        topMessageTxtField.textAlignment = NSTextAlignment.Center
+        bottomMessageTxtField.textAlignment = NSTextAlignment.Center
+        
+    }
+    
+    /**
+     * Make the meme object and call share function
+     */
+    func save() {
+        
+        //Create the meme
+        let meme = Meme( topString: topMessageTxtField.text!, bottomString: bottomMessageTxtField.text!, original: originalImage.image!, memeImage: generateMemedImage())
+        
+        //Share the meme
+        share(meme:meme)
+    }
+    
+    /**
+     * Generate the meme image with the textfields values
+     */
+    func generateMemedImage() -> UIImage{
+        
+        //Hide the toolbar for that no appearing in the meme image
+        toolbar.hidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawViewHierarchyInRect(self.view.frame,
+            afterScreenUpdates: true)
+        let memedImage : UIImage =
+        UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        //Show the toolbar again
+        toolbar.hidden = false
+        
+        return memedImage
+    }
+    
+    /**
+     * Share meme image with the device options
+     */
+    func share(meme meme: Meme){
+        
+        let objectsToShare = [meme.memeImage]
+        
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        
+        self.presentViewController(activityVC, animated: true, completion: nil)
+        
+    }
+    
+    
     
     /*
     // MARK: - Navigation
@@ -163,55 +225,27 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage{
-            
-            memeImage.contentMode = .ScaleAspectFit
-            
-            memeImage.image = self.imageWithSize(chosenImage, size: CGSize(width: 120, height: 120))
-            
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            originalImage.image = chosenImage
             dismissViewControllerAnimated(true, completion: nil)
-            
-        }else if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            
-            memeImage.contentMode = .ScaleAspectFit
-            
-            memeImage.image = self.imageWithSize(chosenImage, size: CGSize(width: 120, height: 120))
-            dismissViewControllerAnimated(true, completion: nil)
-            
         }
         
     }
-    
-    func imageWithSize(image: UIImage,size: CGSize)->UIImage{
-        if UIScreen.mainScreen().respondsToSelector("scale"){
-            UIGraphicsBeginImageContextWithOptions(size,false,UIScreen.mainScreen().scale);
-        }
-        else{
-            UIGraphicsBeginImageContext(size);
-        }
-        
-        image.drawInRect(CGRectMake(0, 0, size.width, size.height));
-        let newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        return newImage;
-    }
-    
 }
 
 extension MemeEditorViewController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = ""
+        currentTextField = textField
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-
+    
 }
 
