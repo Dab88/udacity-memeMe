@@ -28,13 +28,21 @@ class MemeEditorViewController: UIViewController {
         setTextFieldAttributes()
         subscribeToKeyboardNotifications()
         
-        // Do any additional setup after loading the view.
+        //Add gesture from hide keyboard when the user touch the screen
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "hideKeyboard"))
+        
     }
 
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    
+    // MARK: - Keyboard management
+    func hideKeyboard(){
+        self.view.endEditing(true)
     }
     
     func keyboardWillShow(notification: NSNotification){
