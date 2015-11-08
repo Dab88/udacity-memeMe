@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="E23-hu-4I7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tub-Fq-4xd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -28,6 +28,13 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="WVO-9w-GKB">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <animations/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWX-ou-eFu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <animations/>
@@ -43,16 +50,9 @@
                                     <barButtonItem title="Album" id="jji-VG-nWa"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="WVO-9w-GKB">
-                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                <animations/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                            </textField>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.61176470589999998" green="0.0" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.086260028183460236" green="0.08628285676240921" blue="0.086258567869663239" alpha="0.580078125" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BIU-jE-tzV" secondAttribute="trailing" constant="20" id="0AN-dX-mYi"/>
                             <constraint firstItem="xLV-Pm-hNs" firstAttribute="width" secondItem="jAe-s8-eD9" secondAttribute="width" id="39U-RE-cVS"/>
@@ -84,8 +84,8 @@
                             <mask key="subviews">
                                 <exclude reference="xLV-Pm-hNs"/>
                                 <exclude reference="BIU-jE-tzV"/>
-                                <exclude reference="GWX-ou-eFu"/>
                                 <exclude reference="WVO-9w-GKB"/>
+                                <exclude reference="GWX-ou-eFu"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="39U-RE-cVS"/>
@@ -115,8 +115,8 @@
                             <mask key="subviews">
                                 <include reference="xLV-Pm-hNs"/>
                                 <include reference="BIU-jE-tzV"/>
-                                <include reference="GWX-ou-eFu"/>
                                 <include reference="WVO-9w-GKB"/>
+                                <include reference="GWX-ou-eFu"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="39U-RE-cVS"/>
@@ -143,6 +143,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="smC-8k-K98">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="Xzr-CG-jBz"/>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Is1-V6-5HH"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -153,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ksb-V3-27t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1323" y="1298"/>
+            <point key="canvasLocation" x="-405" y="1298"/>
         </scene>
         <!--Meme Detail View Controller-->
         <scene sceneID="vHi-AX-DhA">
@@ -173,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66Y-N4-Skx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-633" y="1298"/>
+            <point key="canvasLocation" x="285" y="1298"/>
         </scene>
         <!--MemeDetail-->
         <scene sceneID="rwX-9i-pMQ">
@@ -193,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xzE-Cv-gvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="453" y="705"/>
+            <point key="canvasLocation" x="1371" y="705"/>
         </scene>
         <!--MemeEditor-->
         <scene sceneID="maw-Mn-1l8">
@@ -233,6 +237,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9T-4W-zcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-909" y="351"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7QM-O5-EN4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tub-Fq-4xd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pdq-Nb-3xu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="E23-hu-4I7" kind="relationship" relationship="rootViewController" id="ydI-uJ-kXO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUc-GX-Adi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1323" y="1298"/>
         </scene>
     </scenes>
     <resources>

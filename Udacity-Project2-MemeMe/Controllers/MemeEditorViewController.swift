@@ -24,6 +24,7 @@ class MemeEditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBarHidden = false
         setTextFieldAttributes()
         subscribeToKeyboardNotifications()
         
