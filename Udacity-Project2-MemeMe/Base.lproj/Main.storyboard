@@ -53,13 +53,15 @@
                                             <action selector="takePhotoFromCamera:" destination="E23-hu-4I7" id="lSX-TT-1cT"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Album" width="98" id="jji-VG-nWa">
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="ee0-we-Vpx"/>
+                                    <barButtonItem title="Album" id="jji-VG-nWa">
                                         <connections>
                                             <action selector="pickAnImage:" destination="E23-hu-4I7" id="Lgd-AY-NUj"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1Fz-wb-geC"/>
                                 </items>
+                                <color key="tintColor" red="0.96677201986312866" green="0.35023003816604614" blue="0.048808552324771881" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                         </subviews>
                         <animations/>
@@ -268,6 +270,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
+                        <color key="backgroundColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="0.2600295608108108" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.96677201986312866" green="0.35023003816604614" blue="0.048808552324771881" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
