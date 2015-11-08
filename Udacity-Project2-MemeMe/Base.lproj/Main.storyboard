@@ -31,12 +31,16 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWX-ou-eFu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.086260028183460236" green="0.08628285676240921" blue="0.086258567869663239" alpha="0.580078125" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <barButtonItem title="Pick" id="7u3-7f-Ofj">
+                                    <barButtonItem width="124" style="plain" systemItem="fixedSpace" id="bSl-hQ-v1I"/>
+                                    <barButtonItem systemItem="camera" id="7u3-7f-Ofj">
                                         <connections>
                                             <action selector="pickAnImage:" destination="E23-hu-4I7" id="NVj-6M-pi7"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="73" style="plain" systemItem="fixedSpace" id="ooI-l6-NWp"/>
+                                    <barButtonItem title="Album" id="jji-VG-nWa"/>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="WVO-9w-GKB">

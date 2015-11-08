@@ -17,7 +17,6 @@ The Meme Editor View consists of an image view overlaid by two text fields, one 
 
 class MemeEditorViewController: UIViewController {
 
-    
     @IBOutlet weak var topMessageTxtField: UITextField!
     @IBOutlet weak var bottomMessageTxtField: UITextField!
     @IBOutlet weak var memeImage: UIImageView!
@@ -46,13 +45,11 @@ class MemeEditorViewController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification){
-    
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
  
     func keyboardWillHide(notification: NSNotification){
-        
         self.view.frame.origin.y += getKeyboardHeight(notification)
     }
     
@@ -81,8 +78,6 @@ class MemeEditorViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
-    
-    
     
 
     func setTextFieldAttributes(){
@@ -117,6 +112,8 @@ class MemeEditorViewController: UIViewController {
         pickerController.delegate = self
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -134,13 +131,7 @@ class MemeEditorViewController: UIViewController {
 
 
 extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        
-        
-    }
-    
+
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
