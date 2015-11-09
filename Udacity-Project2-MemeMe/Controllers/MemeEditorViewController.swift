@@ -65,12 +65,8 @@ class MemeEditorViewController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification){
-        if( currentTextField == bottomMessageTxtField){
-            view.frame.origin.y -= getKeyboardHeight(notification)
-            
-        }
+        view.frame.origin.y = 0
     }
-    
     
     func keyboardWillHide(notification: NSNotification){
         if( currentTextField == bottomMessageTxtField){
@@ -161,10 +157,22 @@ class MemeEditorViewController: UIViewController {
     func save() {
         
         //Create the meme
-        let meme = Meme( topString: topMessageTxtField.text!, bottomString: bottomMessageTxtField.text!, originalImage: originalImage.image!, memeImage: generateMemedImage())
+        if let originalImage = originalImage.image {
+            let meme = Meme( topString: topMessageTxtField.text!, bottomString: bottomMessageTxtField.text!, originalImage: originalImage, memeImage: generateMemedImage())
+            
+            //Share the meme
+            share(meme:meme)
+        }else{
         
-        //Share the meme
-        share(meme:meme)
+            let alert = UIAlertController(title: "",
+                message: "Select an image to share", preferredStyle: .Alert)
+            
+            let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alert.addAction(dismissAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     /**
@@ -203,7 +211,7 @@ class MemeEditorViewController: UIViewController {
     }
     
     func originalState(){
-    
+        
         originalImage.image = UIImage()
         topMessageTxtField.text = "TOP"
         bottomMessageTxtField.text = "BOTTOM"
