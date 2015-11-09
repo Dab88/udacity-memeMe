@@ -25,6 +25,8 @@ class MemeEditorViewController: UIViewController {
     
     var currentTextField: UITextField!
     
+    
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -32,7 +34,7 @@ class MemeEditorViewController: UIViewController {
         setTextFieldAttributes()
         
         //Add gesture from hide keyboard when the user touch the screen
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "hideKeyboard"))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "hideKeyboard"))
         
         //Enable the cameraBtn only if camera is available
         cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
@@ -57,14 +59,14 @@ class MemeEditorViewController: UIViewController {
     }
     
     
-    // MARK: - Keyboard management
+    // MARK: - Keyboard management Methods
     func hideKeyboard(){
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
     func keyboardWillShow(notification: NSNotification){
         if( currentTextField == bottomMessageTxtField){
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y -= getKeyboardHeight(notification)
             
         }
     }
@@ -72,7 +74,7 @@ class MemeEditorViewController: UIViewController {
     
     func keyboardWillHide(notification: NSNotification){
         if( currentTextField == bottomMessageTxtField){
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
     
@@ -100,12 +102,12 @@ class MemeEditorViewController: UIViewController {
     }
     
     
-    // MARK: - IBActions
+    // MARK: - IBActions Methods
     @IBAction func pickAnImage(sender: AnyObject) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = .PhotoLibrary
-        self.presentViewController(pickerController, animated: true, completion: nil)
+        presentViewController(pickerController, animated: true, completion: nil)
     }
     
     
@@ -131,7 +133,7 @@ class MemeEditorViewController: UIViewController {
     }
     
     
-    //MARK: - Other
+    //MARK: - Other Methods
     
     /**
     * Set textfield attributes
@@ -159,7 +161,7 @@ class MemeEditorViewController: UIViewController {
     func save() {
         
         //Create the meme
-        let meme = Meme( topString: topMessageTxtField.text!, bottomString: bottomMessageTxtField.text!, original: originalImage.image!, memeImage: generateMemedImage())
+        let meme = Meme( topString: topMessageTxtField.text!, bottomString: bottomMessageTxtField.text!, originalImage: originalImage.image!, memeImage: generateMemedImage())
         
         //Share the meme
         share(meme:meme)
@@ -174,8 +176,8 @@ class MemeEditorViewController: UIViewController {
         toolbar.hidden = true
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame,
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame,
             afterScreenUpdates: true)
         let memedImage : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()
@@ -196,15 +198,15 @@ class MemeEditorViewController: UIViewController {
         
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         
-        self.presentViewController(activityVC, animated: true, completion: nil)
+        presentViewController(activityVC, animated: true, completion: nil)
         
     }
     
     func originalState(){
     
-        self.originalImage.image = UIImage()
-        self.topMessageTxtField.text = "TOP"
-        self.bottomMessageTxtField.text = "BOTTOM"
+        originalImage.image = UIImage()
+        topMessageTxtField.text = "TOP"
+        bottomMessageTxtField.text = "BOTTOM"
         
     }
     

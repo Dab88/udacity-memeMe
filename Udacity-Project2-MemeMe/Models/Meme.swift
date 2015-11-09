@@ -8,21 +8,11 @@
 
 import UIKit
 
-class Meme : NSObject{
+struct Meme {
     
     var topString: String!
     var bottomString: String!
     var originalImage: UIImage!
     var memeImage: UIImage! //Combining the text and the original image
-    
-    required init(topString: String, bottomString: String, original: UIImage, memeImage: UIImage) {
-        
-        super.init()
-        
-        self.topString = topString
-        self.bottomString = bottomString
-        self.originalImage = original
-        self.memeImage = memeImage
-    }
-    
+
 }
