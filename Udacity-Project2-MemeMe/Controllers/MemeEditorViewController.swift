@@ -39,6 +39,8 @@ class MemeEditorViewController: UIViewController {
         //Enable the cameraBtn only if camera is available
         cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         
+        self.navigationController?.navigationBarHidden = false
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -121,11 +123,29 @@ class MemeEditorViewController: UIViewController {
     
     @IBAction func cancelMeme(sender: AnyObject) {
         originalState()
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
     @IBAction func shareMeme(sender: AnyObject) {
-        save()
+        //Save meme
+        let meme = save()
+        
+        //Share the meme
+        guard (meme != nil) else{
+            let alert = UIAlertController(title: "",
+                message: "Select an image to share", preferredStyle: .Alert)
+            
+            let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alert.addAction(dismissAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        share(meme:meme!)
     }
     
     
@@ -154,25 +174,19 @@ class MemeEditorViewController: UIViewController {
     /**
      * Make the meme object and call share function
      */
-    func save() {
+    func save() -> Meme?{
         
         //Create the meme
         if let originalImage = originalImage.image {
             let meme = Meme( topString: topMessageTxtField.text!, bottomString: bottomMessageTxtField.text!, originalImage: originalImage, memeImage: generateMemedImage())
             
-            //Share the meme
-            share(meme:meme)
-        }else{
-        
-            let alert = UIAlertController(title: "",
-                message: "Select an image to share", preferredStyle: .Alert)
+            //Add it to the memes array
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
             
-            let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            
-            alert.addAction(dismissAction)
-            
-            self.presentViewController(alert, animated: true, completion: nil)
+            return meme
         }
+        
+        return nil
     }
     
     /**
