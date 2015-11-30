@@ -52,6 +52,7 @@ class MemeEditorViewController: UIViewController {
         //Enable the cameraBtn only if camera is available
         cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         
+        // self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -146,6 +147,9 @@ class MemeEditorViewController: UIViewController {
         }
         
         share(meme:meme!)
+        
+        
+
     }
     
     
@@ -220,7 +224,10 @@ class MemeEditorViewController: UIViewController {
         
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         
-        presentViewController(activityVC, animated: true, completion: nil)
+        presentViewController(activityVC, animated: true, completion: {
+           
+            
+        })
         
     }
     
@@ -231,17 +238,6 @@ class MemeEditorViewController: UIViewController {
         bottomMessageTxtField.text = "BOTTOM"
         
     }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }
 
 
