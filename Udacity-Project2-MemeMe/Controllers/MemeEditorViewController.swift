@@ -140,16 +140,13 @@ class MemeEditorViewController: UIViewController {
             let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             
             alert.addAction(dismissAction)
-            
+    
             self.presentViewController(alert, animated: true, completion: nil)
             
             return
         }
         
         share(meme:meme!)
-        
-        
-
     }
     
     
@@ -222,12 +219,14 @@ class MemeEditorViewController: UIViewController {
         
         let objectsToShare = [meme.memeImage]
         
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        let shareActivityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         
-        presentViewController(activityVC, animated: true, completion: {
-           
+        shareActivityVC.completionWithItemsHandler = {(activityType: String?, bool: Bool, dictType: [AnyObject]?, error: NSError?) -> Void in
+            //Back to previous viewController
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
             
-        })
+        presentViewController(shareActivityVC, animated: true, completion: nil)
         
     }
     
@@ -273,5 +272,15 @@ extension MemeEditorViewController: UITextFieldDelegate{
         return true
     }
     
+}
+
+
+extension MemeEditorViewController: UIActionSheetDelegate{
+
+
+    func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int){
+    
+        
+    }
 }
 

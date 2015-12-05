@@ -210,6 +210,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Llm-qR-mK5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="myM-wz-LKE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YzS-Yw-xUq">
@@ -231,11 +232,11 @@
                                 <exclude reference="YzS-Yw-xUq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="X3n-Z1-sr8"/>
                                 <exclude reference="3HE-uX-qGa"/>
                                 <exclude reference="RV6-lT-hhE"/>
                                 <exclude reference="TOw-A2-3Xm"/>
                                 <exclude reference="VUh-EY-OQR"/>
-                                <exclude reference="X3n-Z1-sr8"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -243,11 +244,11 @@
                                 <include reference="YzS-Yw-xUq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="X3n-Z1-sr8"/>
                                 <exclude reference="3HE-uX-qGa"/>
                                 <include reference="RV6-lT-hhE"/>
                                 <include reference="TOw-A2-3Xm"/>
                                 <include reference="VUh-EY-OQR"/>
-                                <include reference="X3n-Z1-sr8"/>
                             </mask>
                         </variation>
                     </view>
@@ -280,7 +281,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DFB-6y-Vfn" id="Ep6-Xr-7M4">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="88.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEb-iQ-oyz">
@@ -353,7 +354,8 @@
                                                     <exclude reference="iuq-nb-sKL"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="widthClass=compact">
+                                            <variation key="widthClass=compact" ambiguous="YES">
+                                                <rect key="frame" x="0.0" y="0.0" width="400" height="109"/>
                                                 <mask key="subviews">
                                                     <include reference="tEb-iQ-oyz"/>
                                                     <include reference="GLb-Ra-15d"/>
