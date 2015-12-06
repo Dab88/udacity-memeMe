@@ -51,7 +51,7 @@ class MemeEditorViewController: UIViewController {
         
         //Enable the cameraBtn only if camera is available
         cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
-
+        
     }
     
     
@@ -67,13 +67,14 @@ class MemeEditorViewController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification){
-        view.frame.origin.y = 0
+        if( currentTextField == bottomMessageTxtField){
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+        
     }
     
     func keyboardWillHide(notification: NSNotification){
-        if( currentTextField == bottomMessageTxtField){
-            view.frame.origin.y += getKeyboardHeight(notification)
-        }
+        view.frame.origin.y = 0
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
@@ -139,7 +140,7 @@ class MemeEditorViewController: UIViewController {
             let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             
             alert.addAction(dismissAction)
-    
+            
             presentViewController(alert, animated: true, completion: nil)
             
             return
@@ -224,7 +225,7 @@ class MemeEditorViewController: UIViewController {
             //Back to previous viewController
             self.dismissViewControllerAnimated(true, completion: nil)
         }
-            
+        
         presentViewController(shareActivityVC, animated: true, completion: nil)
         
     }
@@ -275,10 +276,10 @@ extension MemeEditorViewController: UITextFieldDelegate{
 
 
 extension MemeEditorViewController: UIActionSheetDelegate{
-
-
-    func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int){
     
+    
+    func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int){
+        
         
     }
 }
