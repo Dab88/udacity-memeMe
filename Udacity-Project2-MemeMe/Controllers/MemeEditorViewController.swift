@@ -22,9 +22,12 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var originalImage: UIImageView!
     @IBOutlet weak var cameraBtn: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
-    
+
     var currentTextField: UITextField!
     
+    //Previous meme information
+    var previousMeme: Meme?
+    var memeIndex: Int!
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -52,11 +55,15 @@ class MemeEditorViewController: UIViewController {
         //Enable the cameraBtn only if camera is available
         cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         
+        //Load previous meme, if apply
+        reloadPreviousMeme()
+        
+        tabBarController?.tabBar.hidden = true
     }
-    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        previousMeme = nil
         unsubscribeFromKeyboardNotifications()
     }
     
@@ -120,15 +127,15 @@ class MemeEditorViewController: UIViewController {
         presentViewController(pickerController, animated: true, completion: nil)
     }
     
-    
-    
     @IBAction func cancelMeme(sender: AnyObject) {
         originalState()
         navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     
     @IBAction func shareMeme(sender: AnyObject) {
+       
         //Save meme
         let meme = save()
         
@@ -181,10 +188,18 @@ class MemeEditorViewController: UIViewController {
         if let originalImage = originalImage.image {
             let meme = Meme( topString: topMessageTxtField.text!, bottomString: bottomMessageTxtField.text!, originalImage: originalImage, memeImage: generateMemedImage())
             
+        
+            guard previousMeme != nil else{
+                //Add it to the memes array
+                (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+                return meme
+            }
+            
             //Add it to the memes array
-            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes[memeIndex] = meme
             
             return meme
+            
         }
         
         return nil
@@ -223,7 +238,8 @@ class MemeEditorViewController: UIViewController {
         
         shareActivityVC.completionWithItemsHandler = {(activityType: String?, bool: Bool, dictType: [AnyObject]?, error: NSError?) -> Void in
             //Back to previous viewController
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
         }
         
         presentViewController(shareActivityVC, animated: true, completion: nil)
@@ -231,11 +247,23 @@ class MemeEditorViewController: UIViewController {
     }
     
     func originalState(){
-        
         originalImage.image = UIImage()
         topMessageTxtField.text = "TOP"
         bottomMessageTxtField.text = "BOTTOM"
+    }
+    
+    /**
+     * Load previous meme if the meme is different to nil.
+     * previousMeme var has been filled at MemeDetailViewController
+     */
+    func reloadPreviousMeme(){
+        guard previousMeme != nil else{
+            return
+        }
         
+        topMessageTxtField.text = previousMeme?.topString
+        bottomMessageTxtField.text = previousMeme?.bottomString
+        originalImage.image = previousMeme?.originalImage
     }
 }
 
@@ -272,15 +300,5 @@ extension MemeEditorViewController: UITextFieldDelegate{
         return true
     }
     
-}
-
-
-extension MemeEditorViewController: UIActionSheetDelegate{
-    
-    
-    func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int){
-        
-        
-    }
 }
 

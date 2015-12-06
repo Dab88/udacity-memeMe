@@ -213,7 +213,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YzS-Yw-xUq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YzS-Yw-xUq">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                             </imageView>
@@ -276,6 +276,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.99607843139999996" green="0.99215686270000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MemeTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableViewCell" rowHeight="138" id="DFB-6y-Vfn" customClass="MemeTableViewCell" customModule="Udacity_Project2_MemeMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -367,6 +368,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="memeImage" destination="GLb-Ra-15d" id="XXt-Og-6qS"/>
                                             <outlet property="memetext" destination="tEb-iQ-oyz" id="VaL-bC-wV8"/>
@@ -380,7 +382,7 @@
                             </tableView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.99215686274509807" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="l1t-iD-E8w" secondAttribute="bottom" id="1Gb-59-0Eo"/>
                             <constraint firstItem="l1t-iD-E8w" firstAttribute="width" secondItem="OHu-bS-gIG" secondAttribute="width" id="FGX-Jt-KxN"/>
@@ -473,7 +475,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.99607843139999996" green="0.99215686270000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="WeL-7x-Zmw">
                             <size key="itemSize" width="110" height="115"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -585,7 +587,7 @@
         <image name="table_30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jx8-wo-1AH"/>
+        <segue reference="8oK-RD-O70"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.55503496330000002" blue="0.13170439780000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

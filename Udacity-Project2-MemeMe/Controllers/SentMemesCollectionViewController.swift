@@ -31,7 +31,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MemeCollectionCell.identifier, forIndexPath: indexPath) as! MemeCollectionCell
-      
+        
         //Set cell with meme values
         cell.setup(memes[indexPath.row])
         
@@ -43,8 +43,9 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         
         detailController.meme = memes[indexPath.row]
+        detailController.memeIndex = indexPath.row
         
-         navigationController!.pushViewController(detailController, animated: true)
+        navigationController!.pushViewController(detailController, animated: true)
         
     }
     

@@ -15,13 +15,42 @@ The Meme Detail View displays the selected meme in an image view in the center o
 
 */
 class MemeDetailViewController: UIViewController {
-
+    
+    var memeIndex: Int!
     var meme:Meme!
+
+    var memes: [Meme] {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    }
+
     
     @IBOutlet weak var memeImageDetail: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addNavItemOnView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        meme = memes[memeIndex]
         memeImageDetail.image = meme.memeImage
+        tabBarController?.tabBar.hidden = false
+    }
+    
+    //MARK: - NavigationBar Methods
+    func addNavItemOnView(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: "editMeme")
+    }
+    
+    func editMeme(){
+        
+        let memeEditorController = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        
+        memeEditorController.previousMeme = meme
+        memeEditorController.memeIndex = memeIndex
+        
+        navigationController!.pushViewController(memeEditorController, animated: true)
+        
     }
 }

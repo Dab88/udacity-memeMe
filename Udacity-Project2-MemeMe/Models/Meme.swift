@@ -14,5 +14,4 @@ struct Meme {
     var bottomString: String!
     var originalImage: UIImage!
     var memeImage: UIImage! //Combining the text and the original image
-
 }
