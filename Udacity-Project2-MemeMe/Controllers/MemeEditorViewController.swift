@@ -39,7 +39,7 @@ class MemeEditorViewController: UIViewController {
         //Enable the cameraBtn only if camera is available
         cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         
-        self.navigationController?.navigationBarHidden = false
+        navigationController?.navigationBarHidden = false
         
     }
     
@@ -51,8 +51,7 @@ class MemeEditorViewController: UIViewController {
         
         //Enable the cameraBtn only if camera is available
         cameraBtn.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
-        
-        // self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+
     }
     
     
@@ -124,7 +123,7 @@ class MemeEditorViewController: UIViewController {
     
     @IBAction func cancelMeme(sender: AnyObject) {
         originalState()
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -141,7 +140,7 @@ class MemeEditorViewController: UIViewController {
             
             alert.addAction(dismissAction)
     
-            self.presentViewController(alert, animated: true, completion: nil)
+            presentViewController(alert, animated: true, completion: nil)
             
             return
         }

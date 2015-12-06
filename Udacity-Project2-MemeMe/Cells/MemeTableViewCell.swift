@@ -18,9 +18,9 @@ class MemeTableViewCell: UITableViewCell {
     func setup(meme: Meme){
         
         //Set cell.memeImage with meme.memeImage
-        self.memeImage.image = meme.memeImage
+        memeImage.image = meme.memeImage
         
         //Set name
-        self.memetext.text = meme.topString + " " + meme.bottomString
+        memetext.text = meme.topString + " " + meme.bottomString
     }
 }

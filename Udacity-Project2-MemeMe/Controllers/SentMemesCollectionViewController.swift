@@ -16,7 +16,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = false
+        tabBarController?.tabBar.hidden = false
         collectionView?.reloadData()
         
     }
@@ -25,7 +25,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     // MARK: Collection View Data Source
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.memes.count
+        return memes.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -40,11 +40,11 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath:NSIndexPath){
         
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         
         detailController.meme = memes[indexPath.row]
         
-        self.navigationController!.pushViewController(detailController, animated: true)
+         navigationController!.pushViewController(detailController, animated: true)
         
     }
     

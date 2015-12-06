@@ -25,7 +25,7 @@ class SentMemesTableViewController: UIViewController {
 extension SentMemesTableViewController : UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.memes.count
+        return memes.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -45,11 +45,11 @@ extension SentMemesTableViewController: UITableViewDelegate{
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         
         detailController.meme = memes[indexPath.row]
         
-        self.navigationController!.pushViewController(detailController, animated: true)
+        navigationController!.pushViewController(detailController, animated: true)
         
     }
 }
