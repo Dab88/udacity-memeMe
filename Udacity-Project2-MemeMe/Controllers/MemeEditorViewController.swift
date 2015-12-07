@@ -22,8 +22,6 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var originalImage: UIImageView!
     @IBOutlet weak var cameraBtn: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
-
-    var currentTextField: UITextField!
     
     //Previous meme information
     var previousMeme: Meme?
@@ -74,7 +72,7 @@ class MemeEditorViewController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification){
-        if( currentTextField == bottomMessageTxtField){
+        if(bottomMessageTxtField.isFirstResponder()){
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
         
@@ -195,8 +193,8 @@ class MemeEditorViewController: UIViewController {
                 return meme
             }
             
-            //Add it to the memes array
-            (UIApplication.sharedApplication().delegate as! AppDelegate).memes[memeIndex] = meme
+            //Update meme
+            (UIApplication.sharedApplication().delegate as! AppDelegate).updateMemeAtIndex(memeIndex, meme: meme)
             
             return meme
             
@@ -280,19 +278,60 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            originalImage.image = chosenImage
+        if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage{
+            
+            originalImage.contentMode = .ScaleAspectFit
+            
+            originalImage.image = imageWithSize(chosenImage, size: CGSize(width: originalImage.frame.width, height: originalImage.frame.height))
+     
+            
+            dismissViewControllerAnimated(true, completion: nil)
+            
+        }else if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            
+            originalImage.contentMode = .ScaleAspectFit
+            
+            originalImage.image = imageWithSize(chosenImage, size: CGSize(width: originalImage.frame.width, height: originalImage.frame.height))
+       
             dismissViewControllerAnimated(true, completion: nil)
         }
-        
     }
+    
+    func imageWithSize(image: UIImage,size: CGSize)->UIImage{
+        if UIScreen.mainScreen().respondsToSelector("scale"){
+            UIGraphicsBeginImageContextWithOptions(size,false,UIScreen.mainScreen().scale);
+        }
+        else{
+            UIGraphicsBeginImageContext(size);
+        }
+        
+        image.drawInRect(CGRectMake(0, 0, size.width, size.height));
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return newImage;
+    }
+    
+    
+    func resizeImageWithAspect(image: UIImage,scaledToMaxWidth width:CGFloat,maxHeight height :CGFloat)->UIImage{
+        let oldWidth = image.size.width;
+        let oldHeight = image.size.height;
+        
+        let scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+        
+        let newHeight = oldHeight * scaleFactor;
+        let newWidth = oldWidth * scaleFactor;
+        let newSize = CGSizeMake(newWidth, newHeight);
+        
+        return imageWithSize(image, size: newSize);
+    }
+    
 }
 
 extension MemeEditorViewController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = ""
-        currentTextField = textField
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

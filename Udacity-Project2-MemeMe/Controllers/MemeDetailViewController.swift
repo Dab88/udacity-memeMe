@@ -40,7 +40,7 @@ class MemeDetailViewController: UIViewController {
     
     //MARK: - NavigationBar Methods
     func addNavItemOnView(){
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: "editMeme")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: "editMeme")
     }
     
     func editMeme(){
